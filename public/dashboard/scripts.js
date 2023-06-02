@@ -2,9 +2,9 @@
 const isAuthenticated = () => {
   let user = localStorage.getItem("user");
   if (!user) {
-    window.location.href = "http://127.0.0.1:3000/login.html";
+    window.location.href = "/login.html";
   }
-}
+};
 
 // Refreshing the page for home and logo
 function refreshPage() {
@@ -52,7 +52,7 @@ document
   .getElementById("button")
   .addEventListener("click", redirectSearchPage, true);
 function redirectSearchPage() {
-  location.href = "http://127.0.0.1:3000/clothes";
+  location.href = "/clothes";
 }
 
 document
@@ -61,7 +61,7 @@ document
 
 function logoutUser() {
   localStorage.removeItem("user");
-  window.location.href = "http://127.0.0.1:3000/login.html";
+  window.location.href = "/login.html";
 }
 
 // redirecting to mens section
@@ -69,7 +69,7 @@ document
   .getElementById("men_categories")
   .addEventListener("click", redirectMenPage, true);
 function redirectMenPage() {
-  location.href = "http://127.0.0.1:3000/clothes?category=Men";
+  location.href = "/clothes?category=Men";
 }
 
 // redirecting to womens section
@@ -77,7 +77,7 @@ document
   .getElementById("women_categories")
   .addEventListener("click", redirectWomenPage, true);
 function redirectWomenPage() {
-  location.href = "http://127.0.0.1:3000/clothes?category=Women";
+  location.href = "/clothes?category=Women";
 }
 
 // redirecting to kids section
@@ -85,9 +85,8 @@ document
   .getElementById("kids_categories")
   .addEventListener("click", redirectKidsPage, true);
 function redirectKidsPage() {
-  location.href = "http://127.0.0.1:3000/clothes?category=Kids";
+  location.href = "/clothes?category=Kids";
 }
-
 
 // logout-dropdown menu
 document
@@ -117,10 +116,7 @@ document
   .getElementById("fb_handle")
   .addEventListener("click", redirectFacebookPage, true);
 function redirectFacebookPage() {
-  window.open(
-    "https://www.facebook.com/rewearit.ath/",
-    "_blank"
-  );
+  window.open("https://www.facebook.com/rewearit.ath/", "_blank");
 }
 //Instagram
 document
@@ -233,11 +229,11 @@ function arr(array) {
   }
 }
 
-// Axios HTTP request 
+// Axios HTTP request
 function getPhotoWall() {
   axios({
     method: "get",
-    url: "http://127.0.0.1:3000/api/photo-wall",
+    url: "/api/photo-wall",
   })
     .then(function (response) {
       arr(response.data);

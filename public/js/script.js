@@ -8,9 +8,9 @@ $(".container-form .btn").click(function () {
 const isAuthenticated = () => {
   let user = localStorage.getItem("user");
   if (user) {
-    window.location.href = "http://127.0.0.1:3000";
+    window.location.href = "/";
   }
-}
+};
 
 window.onload = function () {
   document.getElementById("loader-container").style.display = "none";
@@ -21,7 +21,7 @@ document
   .getElementById("login_btn")
   .addEventListener("click", performLogin, true);
 
-  document
+document
   .getElementById("register_btn")
   .addEventListener("click", registerForm, true);
 
@@ -42,23 +42,23 @@ function performLogin(event) {
   document.getElementById("loader-container").style.display = "flex";
   axios({
     method: "post",
-    url: "http://127.0.0.1:3000/api/login",
+    url: "/api/login",
     data: {
       username: uName,
-      password: pass
-    }
+      password: pass,
+    },
   })
     .then(function (response) {
       document.getElementById("loader-container").style.display = "none";
       localStorage.setItem("user", JSON.stringify(response.data));
-      window.location.href = "http://127.0.0.1:3000";
+      window.location.href = "/";
     })
     .catch(function (error) {
       document.getElementById("loader-container").style.display = "none";
       alert(error.response.data.error);
       // Handle error responses
     });
-};
+}
 
 function registerForm(event) {
   event.preventDefault();
@@ -68,7 +68,13 @@ function registerForm(event) {
   var password = document.forms["regForm"]["Password"].value;
   var confPassword = document.forms["regForm"]["confPassword"].value;
 
-  if (email === "" || fullName === "" || username === "" || password === "" || confPassword === "") {
+  if (
+    email === "" ||
+    fullName === "" ||
+    username === "" ||
+    password === "" ||
+    confPassword === ""
+  ) {
     alert("Please fill up all fields!");
     return false;
   }
@@ -82,21 +88,21 @@ function registerForm(event) {
   document.getElementById("loader-container").style.display = "flex";
   axios({
     method: "post",
-    url: "http://127.0.0.1:3000/api/register",
+    url: "/api/register",
     data: {
       email: email,
       fullName: fullName,
       username: username,
-      password: password
-    }
+      password: password,
+    },
   })
     .then(function (response) {
       document.getElementById("loader-container").style.display = "none";
       localStorage.setItem("user", JSON.stringify(response.data));
-      window.location.href = "http://127.0.0.1:3000";
+      window.location.href = "/";
     })
     .catch(function (error) {
       document.getElementById("loader-container").style.display = "none";
       alert(error.response.data.error);
     });
-};
+}
